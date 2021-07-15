@@ -17,12 +17,10 @@ module.exports = {
     try {
         // mengecek apakah sebelum nya ada article di cache
       const userExistInCache = JSON.parse(await getCache(`user_article_${user_id}`));
-      console.log("here is user exist : ", userExistInCache);
       if (userExistInCache) {
           //jika ada return dari cache redis
         return userExistInCache;
       } else {
-        console.log("masuk ke else : ", userExistInCache);
         const userWithArticles = await User.findByPk(user_id, {
           include: {
             as: 'articles',
